@@ -14,7 +14,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class StudentResponse {
 
-  @JsonIgnore
   private long id;
 
   @JsonProperty("first_name")
@@ -25,7 +24,7 @@ public class StudentResponse {
   private String email;
 
   public StudentResponse(Student student) {
-//    this.id = student.getId();
+    this.id = student.getId();
     this.firstName = student.getFirstName();
     this.lastName = student.getLastName();
     this.email = student.getEmail();

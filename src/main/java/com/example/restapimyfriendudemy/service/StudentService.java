@@ -2,6 +2,7 @@ package com.example.restapimyfriendudemy.service;
 
 import com.example.restapimyfriendudemy.entity.Student;
 import com.example.restapimyfriendudemy.repository.StudentRepository;
+import com.example.restapimyfriendudemy.request.CreateStudentRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,5 +18,11 @@ public class StudentService {
 
   public List<Student> getAllStudents() {
     return studentRepository.findAll();
+  }
+
+  public Student createStudent(CreateStudentRequest createStudentRequest) {
+    Student student = new Student(createStudentRequest);
+    student = studentRepository.save(student);
+    return student;
   }
 }
