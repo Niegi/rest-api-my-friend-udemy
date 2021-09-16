@@ -1,7 +1,6 @@
 package com.example.restapimyfriendudemy.response;
 
 import com.example.restapimyfriendudemy.entity.Student;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

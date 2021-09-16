@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,7 +32,7 @@ public class StudentController {
   }
 
   @PostMapping(path = STUDENTS_PATH)
-  public ResponseEntity<StudentResponse> createStudent(@RequestBody CreateStudentRequest createStudentRequest) {
+  public ResponseEntity<StudentResponse> createStudent(@Valid @RequestBody CreateStudentRequest createStudentRequest) {
     Student student = studentService.createStudent(createStudentRequest);
     StudentResponse studentResponse = new StudentResponse(student);
     return ResponseEntity.ok(studentResponse);
