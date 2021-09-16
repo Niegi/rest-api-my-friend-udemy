@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -41,5 +42,15 @@ public class StudentController {
     Student student = studentService.updateStudent(updateStudentRequest);
     StudentResponse studentResponse = new StudentResponse(student);
     return ResponseEntity.ok(studentResponse);
+  }
+
+  @DeleteMapping(path = STUDENTS_PATH + "/{id}")
+  public ResponseEntity<StudentResponse> deleteStudent(@PathVariable long id) {
+    Optional<Student> student = studentService.deleteStudent(id);
+    if (student.isPresent()) {
+      StudentResponse studentResponse = new StudentResponse(student.get());
+      return ResponseEntity.ok(studentResponse);
+    }
+    return ResponseEntity.notFound().build();
   }
 }

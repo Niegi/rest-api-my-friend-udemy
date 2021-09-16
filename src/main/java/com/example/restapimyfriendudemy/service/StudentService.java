@@ -7,6 +7,7 @@ import com.example.restapimyfriendudemy.request.UpdateStudentRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -44,6 +45,14 @@ public class StudentService {
     }
 
     student = studentRepository.save(student);
+    return student;
+  }
+
+  public Optional<Student> deleteStudent(Long id) {
+    Optional<Student> student = studentRepository.findById(id);
+    if (student.isPresent()) {
+      studentRepository.deleteById(id);
+    }
     return student;
   }
 }
