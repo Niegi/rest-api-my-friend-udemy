@@ -60,4 +60,11 @@ public class StudentController {
       .map(StudentResponse::new)
       .collect(Collectors.toList());
   }
+
+  @GetMapping(path = STUDENTS_PATH + "/{firstName}/{lastName}")
+  public List<StudentResponse> getStudentsByFirstNameAndLastName(@PathVariable String firstName, @PathVariable String lastName) {
+    return studentService.getByFirstNameAndLastName(firstName, lastName).stream()
+      .map(StudentResponse::new)
+      .collect(Collectors.toList());
+  }
 }
