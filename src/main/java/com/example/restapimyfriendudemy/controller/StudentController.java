@@ -53,4 +53,11 @@ public class StudentController {
     }
     return ResponseEntity.notFound().build();
   }
+
+  @GetMapping(path = STUDENTS_PATH + "/{firstName}")
+  public List<StudentResponse> getStudentsByFirstName(@PathVariable String firstName) {
+    return studentService.getByFirstName(firstName).stream()
+      .map(StudentResponse::new)
+      .collect(Collectors.toList());
+  }
 }
