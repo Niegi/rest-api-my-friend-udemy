@@ -67,4 +67,12 @@ public class StudentController {
       .map(StudentResponse::new)
       .collect(Collectors.toList());
   }
+
+//  not sure if 'or' in rest path is correct
+  @GetMapping(path = STUDENTS_PATH + "/{firstName}/or/{lastName}")
+  public List<StudentResponse> getStudentsByFirstNameOrLastName(@PathVariable String firstName, @PathVariable String lastName) {
+    return studentService.getByFirstNameOrLastName(firstName, lastName).stream()
+      .map(StudentResponse::new)
+      .collect(Collectors.toList());
+  }
 }
