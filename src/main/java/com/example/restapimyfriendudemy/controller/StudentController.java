@@ -2,6 +2,7 @@ package com.example.restapimyfriendudemy.controller;
 
 import com.example.restapimyfriendudemy.entity.Student;
 import com.example.restapimyfriendudemy.request.CreateStudentRequest;
+import com.example.restapimyfriendudemy.request.InQueryRequest;
 import com.example.restapimyfriendudemy.request.UpdateStudentRequest;
 import com.example.restapimyfriendudemy.response.StudentResponse;
 import com.example.restapimyfriendudemy.service.StudentService;
@@ -72,6 +73,14 @@ public class StudentController {
   @GetMapping(path = STUDENTS_PATH + "/{firstName}/or/{lastName}")
   public List<StudentResponse> getStudentsByFirstNameOrLastName(@PathVariable String firstName, @PathVariable String lastName) {
     return studentService.getByFirstNameOrLastName(firstName, lastName).stream()
+      .map(StudentResponse::new)
+      .collect(Collectors.toList());
+  }
+
+//  tak było w tutku ale wg mnie błędem jest przesyłanie w gecie request body
+  @GetMapping(path = STUDENTS_PATH + "/in")
+  public List<StudentResponse> getStudentsByFirstNameIn(@RequestBody InQueryRequest inQueryRequest) {
+    return studentService.getByFirstNameIn(inQueryRequest).stream()
       .map(StudentResponse::new)
       .collect(Collectors.toList());
   }

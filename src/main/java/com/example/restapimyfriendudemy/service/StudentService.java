@@ -3,6 +3,7 @@ package com.example.restapimyfriendudemy.service;
 import com.example.restapimyfriendudemy.entity.Student;
 import com.example.restapimyfriendudemy.repository.StudentRepository;
 import com.example.restapimyfriendudemy.request.CreateStudentRequest;
+import com.example.restapimyfriendudemy.request.InQueryRequest;
 import com.example.restapimyfriendudemy.request.UpdateStudentRequest;
 import org.springframework.stereotype.Service;
 
@@ -66,5 +67,9 @@ public class StudentService {
 
   public List<Student> getByFirstNameOrLastName(String firstName, String lastName) {
     return studentRepository.findByFirstNameOrLastName(firstName, lastName);
+  }
+
+  public List<Student> getByFirstNameIn(InQueryRequest inQueryRequest) {
+    return studentRepository.findByFirstNameIn(inQueryRequest.getFirstNames());
   }
 }
