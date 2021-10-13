@@ -84,4 +84,11 @@ public class StudentController {
       .map(StudentResponse::new)
       .collect(Collectors.toList());
   }
+
+  @GetMapping(path = STUDENTS_PATH + "/pagination")
+  public List<StudentResponse> getAllStudentsWithPagination(@RequestParam int pageNumber, @RequestParam int pageSize) {
+    return studentService.getAllStudentsWithPagination(pageNumber, pageSize).stream()
+      .map(StudentResponse::new)
+      .collect(Collectors.toList());
+  }
 }
