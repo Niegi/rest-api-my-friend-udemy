@@ -7,6 +7,7 @@ import com.example.restapimyfriendudemy.request.InQueryRequest;
 import com.example.restapimyfriendudemy.request.UpdateStudentRequest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -78,5 +79,10 @@ public class StudentService {
   public List<Student> getAllStudentsWithPagination(int pageNumber, int pageSize) {
     Pageable pageable = PageRequest.of(pageNumber - 1, pageSize);
     return studentRepository.findAll(pageable).getContent();
+  }
+
+  public List<Student> getAllStudentsWithSorting() {
+    Sort sort = Sort.by(Sort.Direction.ASC, "firstName");
+    return studentRepository.findAll(sort);
   }
 }

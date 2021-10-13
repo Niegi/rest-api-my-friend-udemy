@@ -91,4 +91,11 @@ public class StudentController {
       .map(StudentResponse::new)
       .collect(Collectors.toList());
   }
+
+  @GetMapping(path = STUDENTS_PATH + "/sorting")
+  public List<StudentResponse> getAllStudentsWithSorting() {
+    return studentService.getAllStudentsWithSorting().stream()
+      .map(StudentResponse::new)
+      .collect(Collectors.toList());
+  }
 }
