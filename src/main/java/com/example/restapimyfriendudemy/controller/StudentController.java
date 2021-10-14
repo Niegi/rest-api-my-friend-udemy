@@ -98,4 +98,11 @@ public class StudentController {
       .map(StudentResponse::new)
       .collect(Collectors.toList());
   }
+
+  @GetMapping(path = STUDENTS_PATH + "/firstname/like/{firstName}")
+  public List<StudentResponse> getAllStudentsLike(@PathVariable String firstName) {
+    return studentService.like(firstName).stream()
+      .map(StudentResponse::new)
+      .collect(Collectors.toList());
+  }
 }
