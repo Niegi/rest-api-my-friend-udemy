@@ -22,10 +22,13 @@ public class StudentResponse {
 
   private String email;
 
+  private String fullName;
+
   public StudentResponse(Student student) {
     this.id = student.getId();
     this.firstName = student.getFirstName();
     this.lastName = student.getLastName();
     this.email = student.getEmail();
+    this.fullName = student.getFirstName() + " " + student.getLastName();
   }
 }

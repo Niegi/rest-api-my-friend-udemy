@@ -28,9 +28,13 @@ public class Student {
   @Column(name = "email")
   private String email;
 
+  @Transient
+  private String fullName;
+
   public Student(CreateStudentRequest request) {
     this.firstName = request.getFirstName();
     this.lastName = request.getLastName();
     this.email = request.getEmail();
+    this.fullName = request.getFirstName() + " " + request.getLastName();
   }
 }
